@@ -1,38 +1,64 @@
 
 // import { MovieCast } from "../../components/MovieCast/MovieCast"
 // import { MovieReviews } from "../../components/MovieReviews/MovieReviews"
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { getMovieDetailsById } from "../../api/apiService";
+import { useEffect, useState } from "react";
+
 
 export const MovieDetailsPage = () => {
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null); 
+
+  useEffect(() => {  
+    const fetchMovie = async () => {
+      if (!movieId) return;
+      try {
+        const movieData = await getMovieDetailsById(movieId);
+        setMovie(movieData);
+        console.log(movieData); 
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMovie();
+  }, [movieId]);
+  
+  const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>'
+  
   return (
     <main>
-      <h1>About Us</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
-        laborum amet ab cumque sit nihil dolore modi error repudiandae
-        perspiciatis atque voluptas corrupti, doloribus ex maiores quam magni
-        mollitia illum dolor quis alias in sequi quod. Sunt ex numquam hic
-        asperiores facere natus sapiente cum neque laudantium quam, expedita
-        voluptates atque quia aspernatur saepe illo, rem quasi praesentium
-        aliquid sed inventore obcaecati veniam? Nisi magnam vero, dolore
-        praesentium totam ducimus similique asperiores culpa, eius amet
-        repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
-        dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-        eaque voluptatibus eveniet error, nulla rem iusto?
-      </p>
+      {movie && (
+        <section>
+          <h1>Movie Details Page</h1>
+          <div>
+          {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="poster" width={250}/> : defaultImg}
+            </div>
+            <div>
+              <h2>{movie.title}</h2>
+              <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
+              <h3>Overview</h3>
+              <p>{movie.overview}</p>
+              <h4>Genres</h4>
+              <ul>
+                {movie.genres.map((genre, index) => (
+                  <li key={index}>{genre.name}</li>
+                ))}
+              </ul>
+            </div>
+        </section>
+      )}
+      <p>_________________________________________________________________________</p>
       <ul>
         <li>
-          <Link to="cast">Read about our mission</Link>
+          <Link to="credits">Cast</Link>
         </li>
         <li>
-          <Link to="reviews">Get to know the team</Link>
+          <Link to="reviews">Reviews</Link>
         </li>
       </ul>
       <Outlet />
     </main>
-    // <div>
-    //   <MovieCast />
-    //   <MovieReviews />
-    // </div>
-  )
-}
+  );
+};

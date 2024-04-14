@@ -1,23 +1,38 @@
+import { useParams } from "react-router-dom";
+import { getMovieCredits } from "../../api/apiService"
+import { useEffect, useState } from "react";
 
 export const MovieCast = () => {
+  const {movieId} = useParams()
+  const [cast, setCast] = useState([]);
+  // console.log(getMovieCredits(movieId));
+  
+  
+  useEffect(() => {  
+    const fetchMovie = async () => {
+      if (!movieId) return;
+      try {
+        const castData = await getMovieCredits(movieId);
+        setCast(castData.cast);
+        console.log(castData.cast); 
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMovie();
+  }, [movieId]);
+
   return (
     <section>
       <ul>
-        <li>
-          <b>1</b> - Gabrijela Vohu Manah
-        </li>
-        <li>
-          <b>2</b> - Darius Marianne
-        </li>
-        <li>
-          <b>3</b> - Ségdae Jean-Pierre
-        </li>
-        <li>
-          <b>4</b> - Melina Theotimos
-        </li>
-        <li>
-          <b>5</b> - Gregor Ramadhani
-        </li>
+        {cast.map((el) => 
+        <li key={el.id}>
+          <img src={`https://image.tmdb.org/t/p/w500${el.profile_path}`} alt={el.name} width={200} />
+          <p>Name: {el.name}</p>
+            <p>Character: {el.character}</p>
+            <p>________________________________________________________</p>
+        </li>)}        
       </ul>
     </section>
   )
