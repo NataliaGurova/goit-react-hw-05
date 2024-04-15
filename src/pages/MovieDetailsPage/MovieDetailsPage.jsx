@@ -6,7 +6,7 @@ import { getMovieDetailsById } from "../../api/apiService";
 import { useEffect, useRef, useState } from "react";
 
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null); 
   const location = useLocation()
@@ -69,3 +69,5 @@ export const MovieDetailsPage = () => {
     </main>
   );
 };
+
+export default MovieDetailsPage;

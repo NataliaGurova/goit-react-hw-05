@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import { getTrendingMovies } from "../../api/apiService";
 import { MovieList } from "../../components/MovieList/MovieList";
 
-export const HomePage = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,6 +36,8 @@ export const HomePage = () => {
     </main>
   )
 }
+
+export default HomePage;
 
 
 // .then(response => console.log(response))

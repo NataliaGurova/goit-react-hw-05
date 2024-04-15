@@ -4,7 +4,7 @@ import { SearchForm } from "../../components/SearchForm/SearchForm";
 import { MovieList } from "../../components/MovieList/MovieList";
 import { useSearchParams } from "react-router-dom";
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const value = searchParams.get("query");
 
@@ -46,3 +46,5 @@ export const MoviesPage = () => {
       </div>
   )
 }
+
+export default MoviesPage;
