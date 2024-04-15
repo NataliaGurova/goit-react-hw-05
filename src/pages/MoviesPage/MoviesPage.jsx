@@ -1,51 +1,48 @@
 import { useEffect, useState } from "react";
 import { getSearchMovie } from "../../api/apiService";
+import { SearchForm } from "../../components/SearchForm/SearchForm";
+import { MovieList } from "../../components/MovieList/MovieList";
+import { useSearchParams } from "react-router-dom";
 
 export const MoviesPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const value = searchParams.get("query");
 
-  // const [movies, setMovies] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   
-  // useEffect(() => {
-  //   // getSearchMovie()
-  //   setLoading(true);
-  //   const fetchSearchMovie = async () => {
-  //   try {
-  //   const movieDetailsData = await getSearchMovie();
-  //   setMovies(movieDetailsData);
-  //       console.log(movieDetailsData);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchSearchMovie();
+  useEffect(() => {
+    // getSearchMovie(value)
+    // console.log(getSearchMovie(value));
     
-  // }, [query])
+    setLoading(true);
+    if (value === "") return;
+    const fetchSearchMovie = async () => {
+    try {
+    const moviesData = await getSearchMovie(value);
+    setMovies(moviesData);
+        console.log(moviesData);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSearchMovie();
+    
+  }, [value])
   
-
-
-
-
-
+  const handleSubmit= value => {
+    setSearchParams({ query: value });
+    console.log(value);    
+};
 
   return (
-    <form>
-      <input        
-        placeholder="What do you want to film?"
-        name="search"
-        required
-        autoFocus
-        // onChange={saveInput}
-        // value={query}
-      />
-      <button type="submit">
-        BOBO FILM
-        {/* <FiSearch size="16px" /> */}
-      </button>
-    </form>
+    <div>
+      <SearchForm onSubmit={handleSubmit} />
+      {movies.length > 0 && <MovieList movies={movies} /> }
+      </div>
   )
 }

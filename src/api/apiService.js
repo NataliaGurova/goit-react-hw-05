@@ -24,10 +24,13 @@ export const getTrendingMovies = async () => {
 // };
 
 // Search movie url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
-export const getSearchMovie = async () => {
-  const response = await axios.get('/search/movie');
-  return response.data;  
-};
+export const getSearchMovie = async (query) => {
+  const response = await axios.get('/search/movie', {
+    params: { query }
+  });
+  console.log(response.data.results);
+  return response.data.results;  
+}; 
 
 // Movie details url = 'https://api.themoviedb.org/3/movie/movie_id?language=en-US' 
 export const getMovieDetailsById = async (movieId) => {
@@ -45,46 +48,5 @@ export const getMovieCredits = async (movieId) => {
 // Movie reviews url = 'https://api.themoviedb.org/3/movie/movie_id/reviews?language=en-US&page=1'
 export const getMovieReviews = async (movieId) => {
   const response = await axios.get(`/movie/${movieId}/reviews`);
-  return response.data;
-  
+  return response.data;  
 };
-
-// export const fetchTrendingMovies = async () => {
-  
-//   const url = 'https://api.themoviedb.org/3/trending/movie/day';
-//   const options = {
-//   headers: {
-//     // Замість api_read_access_token вставте свій токен
-//     Authorization: `Bearer ${accessToken}`
-//   }
-// };
-//   try {
-//     const response = await axios.get(url, options)
-//     console.log(response);
-//     return response;
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-
-// .then(response => console.log(response))
-// .catch(err => console.error(err));
-
-// https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY
-// https://api.unsplash.com/search/photos?page=1&query=office
-
-// const API_KEY = "CiYbYfeKy1jv8indJhhf6vm3xolSsoXblOTrxmzC1Go";
-// axios.defaults.baseURL = 'https://api.unsplash.com/';
-// // axios.defaults.headers.common['Authorization'] = `Client-ID ${API_KEY}`;
-// axios.defaults.params = {
-//     client_id: API_KEY,
-//     orientation: 'landscape',
-//     per_page: 12,
-// };
-
-// export const fetchPhotos = async (query, page) => {
-
-// const { data } = await axios.get(`search/photos?page=${page}&query=${query}`);
-//       console.log(data);
-//     return data;
-// };
