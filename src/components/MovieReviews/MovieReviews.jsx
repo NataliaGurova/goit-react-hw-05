@@ -12,7 +12,7 @@ export const MovieReviews = () => {
       try {
         const reviewsData = await getMovieReviews(movieId);
         setReviews(reviewsData.results);
-        console.log(reviewsData); 
+
       } catch (error) {
         console.error(error);
       }

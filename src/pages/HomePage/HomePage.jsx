@@ -13,7 +13,7 @@ export const HomePage = () => {
     const fetchTrendingMovies = async () => {
       try {
         const moviesData = await getTrendingMovies();
-console.log(moviesData);
+
 
         setMovies(moviesData);
       

@@ -14,7 +14,7 @@ export const MovieCast = () => {
       try {
         const castData = await getMovieCredits(movieId);
         setCast(castData.cast);
-        console.log(castData.cast); 
+
       } catch (error) {
         console.error(error);
       }

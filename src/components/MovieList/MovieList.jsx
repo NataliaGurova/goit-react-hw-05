@@ -1,16 +1,17 @@
 
+import { NavLink, useLocation } from "react-router-dom";
 
-// import { useLocation } from "react-router-dom";
 
-import { NavLink } from "react-router-dom";
-
-// const location = useLocation();
 export const MovieList = ({ movies }) => {
+
+const location = useLocation();
+console.log( location);
+
   return (    
     <ul>
       {movies.map((movie) => (
         <li key={movie.id}>
-          <NavLink to={`/movies/${movie.id}`}>
+          <NavLink to={`/movies/${movie.id}`} state={ location }>
             {movie.original_title}
           </NavLink>
         </li>
@@ -19,10 +20,4 @@ export const MovieList = ({ movies }) => {
   );
 };
 
-// {countries.map(({ id, country, flag }) => (
-//         <GridItem key={id}>
-//           <Link>
-//             <img src={flag} alt={country} />
-//           </Link>
-//         </GridItem>
-//       ))}
+// state={{ from: location }}

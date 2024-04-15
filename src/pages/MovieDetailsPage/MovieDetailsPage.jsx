@@ -1,22 +1,28 @@
 
 // import { MovieCast } from "../../components/MovieCast/MovieCast"
 // import { MovieReviews } from "../../components/MovieReviews/MovieReviews"
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetailsById } from "../../api/apiService";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 export const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null); 
+  const location = useLocation()
+
+  // const backLinkRef = useRef(location.state?.from || '/');
+  const backLinkRef = useRef(location.state || "/");
+
+  console.log(location.state);
+  
 
   useEffect(() => {  
     const fetchMovie = async () => {
       if (!movieId) return;
       try {
         const movieData = await getMovieDetailsById(movieId);
-        setMovie(movieData);
-        console.log(movieData); 
+        setMovie(movieData); 
       } catch (error) {
         console.error(error);
       }
@@ -29,6 +35,7 @@ export const MovieDetailsPage = () => {
   
   return (
     <main>
+      <Link to={backLinkRef.current}>Back</Link>
       {movie && (
         <section>
           <h1>Movie Details Page</h1>
