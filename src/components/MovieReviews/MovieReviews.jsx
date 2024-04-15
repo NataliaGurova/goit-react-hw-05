@@ -23,7 +23,6 @@ const MovieReviews = () => {
 
   return (
     <section>
-      <h2>Reviews</h2>
       {reviews.map((review, index) => (
         <div key={index}>
           <h3>{review.author}</h3>

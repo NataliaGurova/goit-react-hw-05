@@ -1,23 +1,21 @@
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useSearchParams } from "react-router-dom";
+import css from "./SearchForm.module.css"
 
 export const SearchForm = ({onSubmit}) => {
   const [searchParams, setSearchParams] = useSearchParams(); //---
 
   const query = searchParams.get("query"); //---
   
-  // const inputChange = (evt) => {
-  //   setQuery(evt.target.value);
-  // };
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit(query);
   };
 
-return (<form onSubmit={handleSubmit}>
+return (<form onSubmit={handleSubmit} className={css.wrapper}>
         <input
-          // className={css.input}
+          className={css.input}
           type="text"
           autoComplete="off"
           autoFocus
@@ -25,6 +23,6 @@ return (<form onSubmit={handleSubmit}>
           onChange={e => setSearchParams({ query: e.target.value })}
           value={query}
         />
-        <button type="submit"><BsSearch size="20px"/></button>
+        <button type="submit" className={css.icon}><BsSearch size="20px"/></button>
       </form>)
 }

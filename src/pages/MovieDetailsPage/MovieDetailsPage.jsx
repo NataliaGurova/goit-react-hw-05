@@ -4,6 +4,7 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetailsById } from "../../api/apiService";
 import { useEffect, useRef, useState } from "react";
+import css from "./MovieDetailsPage.module.css"
 
 
 const MovieDetailsPage = () => {
@@ -38,12 +39,11 @@ const MovieDetailsPage = () => {
       <Link to={backLinkRef.current}>Back</Link>
       {movie && (
         <section>
-          <h1>Movie Details Page</h1>
-          <div>
+          
+          <div className={css.container}>
           {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="poster" width={250}/> : defaultImg}
-            </div>
-            <div>
-              <h2>{movie.title}</h2>
+            <div className={css.list}>
+              <h1 className={css.title}>{movie.title}</h1>
               <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
@@ -51,12 +51,13 @@ const MovieDetailsPage = () => {
               <ul>
                 {movie.genres.map((genre, index) => (
                   <li key={index}>{genre.name}</li>
-                ))}
+                  ))}
               </ul>
+            </div>
             </div>
         </section>
       )}
-      <p>_________________________________________________________________________</p>
+      <h4 className={css.titleInfo}>Additional information</h4>
       <ul>
         <li>
           <Link to="credits">Cast</Link>
