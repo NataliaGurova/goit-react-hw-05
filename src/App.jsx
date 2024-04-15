@@ -1,8 +1,7 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import css from './App.module.css'
+
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import css from './App.module.css'
 
 import { Navigation } from './components/Navigation/Navigation';
 import { HomePage } from './pages/HomePage/HomePage';
@@ -13,12 +12,15 @@ import { MovieReviews } from './components/MovieReviews/MovieReviews';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 
 
+
+
 function App() {
-  // const [count, setCount] = useState(0)
+
 
   return (
 		<div className={css.container}>
 			<Navigation />
+			<Suspense fallback={<div>Loading...</div>}>
 
 			<Routes>
 
@@ -31,7 +33,8 @@ function App() {
         </Route>
 				<Route path='*' element={<NotFoundPage />} />
 
-			</Routes>
+				</Routes>
+			</Suspense>
 
 		</div>
   )
