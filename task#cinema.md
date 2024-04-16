@@ -75,6 +75,14 @@ https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 
 
 При натисканні на посилання Go back (після перегляду акторів/ рев'ю) користувач має повернутися на сторінку, з якої він зайшов на сторінку з деталями фільма. Якщо сторінку було оновлено і об'єкт місцезнаходження не зберігся, то повертай користувача на "/movies”.
+!!!!У компоненті MovieDetailsPage пишемо
+const backLinkHref = useRef(location.state ?? "/");
+<Link to={backLinkRef.current}>Back</Link>
+?? має значення null або undefined (a || ще false та  0)
+!!!!У компоненті MovieДшіе пишемо
+ <NavLink to={`/movies/${movie.id}`} state={ location }>
+            {movie.original_title}
+          </NavLink>
 
 
 Поділ коду

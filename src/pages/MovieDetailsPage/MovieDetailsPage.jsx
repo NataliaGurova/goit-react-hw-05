@@ -13,7 +13,7 @@ const MovieDetailsPage = () => {
   const location = useLocation()
 
   // const backLinkRef = useRef(location.state?.from || '/');
-  const backLinkRef = useRef(location.state || "/");
+  const backLinkRef = useRef(location.state ?? "/");
 
   console.log(location.state);
   
