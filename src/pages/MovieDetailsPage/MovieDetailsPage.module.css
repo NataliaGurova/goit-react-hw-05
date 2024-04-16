@@ -18,7 +18,7 @@
 
 .title{
     color: black;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 1.21;
     letter-spacing: -0.03em;
@@ -66,9 +66,9 @@ span{
 
 .titleInfo{
     font-size: 18px;
-    font-weight: 600;
-    line-height: 1.21;
-    letter-spacing: -0.03em;
+    /* font-weight: 600; */
+    /* line-height: 1.21;
+    letter-spacing: -0.03em; */
     margin-top: 20px;
 }
 
