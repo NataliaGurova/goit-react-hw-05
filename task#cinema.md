@@ -14,13 +14,9 @@ Movie reviews - запит оглядів для сторінки кінофіл
 
 
 
-
 Токен доступу
 
-
-
 Токен доступу повинен долучатися до кожного запиту у вигляді HTTP-заголовка Authorization, ось приклад.
-
 
 
 const url = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
@@ -42,20 +38,15 @@ axios.get(url, options)
 Шлях до зображень
 
 
-
 Бекенд буде надсилати замість повноцінного посилання на зображення, наприклад для плаката фільму, отакі рядки, тобто просто ім'я файлу.
-
 
 
 /1E5baAaEse26fej7uHcjOgEE2t2.jpg
 
 
-
 Для складання повного шляху до зображення тобі необхідно ознайомитися з розділом документації, присвяченим цьому питанню.
 
 Якщо коротко, то необхідно вручну додати шлях перед ім'ям зображення. В результаті у тебе вийде повноцінне посилання на зображення.
-
-
 
 https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 
@@ -67,8 +58,6 @@ https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 
 У застосунку обов'язково повинні бути наступні маршрути.
 
-
-
 '/' – компонент HomePage, домашня сторінка із списком популярних кінофільмів.
 '/movies' – компонент MoviesPage, сторінка пошуку кінофільмів за ключовим словом.
 '/movies/:movieId' – компонент MovieDetailsPage, сторінка із детальною інформацією про кінофільм.
@@ -79,8 +68,6 @@ https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 
 Файли, папки та компоненти:
 
-
-
 Файли компонентів сторінок, таких як HomePage, MoviesPage, MovieDetailsPage, NotFoundPage, повинні бути в папці src/pages.
 Компоненти MovieCast і MovieReviews не є окремими сторінками, вони є лише частинами сторінки MovieDetailsPage, тому файли цих компонентів зберігаємо в src/components.
 Меню з навігаційними посиланнями перенесіть в компонент Navigation. Він складається з двох компонентів NavLink, які вказують на маршрути / і /movies.
@@ -90,18 +77,12 @@ https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg
 При натисканні на посилання Go back (після перегляду акторів/ рев'ю) користувач має повернутися на сторінку, з якої він зайшов на сторінку з деталями фільма. Якщо сторінку було оновлено і об'єкт місцезнаходження не зберігся, то повертай користувача на "/movies”.
 
 
-
-
-
 Поділ коду
 
-
-
 Додай асинхронне завантаження JS-коду для маршрутів застосунку, використовуючи React.lazy та Suspense.
+!!!!! Не забути що всі Компоненти повинні бути з export default !!!!!!
 
-<button onClick={() => setCount((count) => count + 1)}>
 
-import { NavLink } from 'react-router-dom';
 
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
@@ -109,3 +90,8 @@ const MoviesPage = lazy(() => import('./pages/MoviesPage/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('./pages/MovieDetailsPage/MovieDetailsPage'));
 const MovieCast = lazy(() => import('./components/MovieCast/MovieCast'));
 const MovieReviews = lazy(() => import('./components/MovieReviews/MovieReviews'));
+
+
+import { NavLink } from 'react-router-dom';
+
+<button onClick={() => setCount((count) => count + 1)}>
