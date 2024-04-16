@@ -31,6 +31,12 @@ export const getSearchMovie = async (query) => {
   console.log(response.data.results);
   return response.data.results;  
 }; 
+// Інший запит на параметри
+// export const getSearchMovie = async (query) => {
+//   const response = await axios.get(`/search/movie?query=${query}`);
+//   console.log(response.data.results);
+//   return response.data.results;  
+// }; 
 
 // Movie details url = 'https://api.themoviedb.org/3/movie/movie_id?language=en-US' 
 export const getMovieDetailsById = async (movieId) => {
