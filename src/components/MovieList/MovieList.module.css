@@ -1,0 +1,45 @@
+/* .list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+} */
+
+.list {
+display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+}
+
+.listItem {
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  /* width: 200px; */
+  
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.listImg {
+   width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.listText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  font-size: 14px;
+  /* height: 100px; */
+  background-color: #1a1a1a;
+}
+/* 
+.rating {
+  font-size: 14px;
+} */

@@ -128,3 +128,11 @@ export default function Products() {
     </main>
   );
 }
+
+
+В компоненті MovieList
+
+рейтінг змінемо 
+<p className={css.rating}>
+                      Rating: {movie.vote_average}
+                    </p>

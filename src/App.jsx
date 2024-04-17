@@ -1,7 +1,7 @@
 
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import css from './App.module.css'
+// import css from './App.module.css'
 
 import { Navigation } from './components/Navigation/Navigation';
 
@@ -18,7 +18,7 @@ function App() {
 
 
   return (
-		<div className={css.container}>
+		<div>
 			<Navigation />
 			<Suspense fallback={<div>Loading...</div>}>
 
@@ -41,3 +41,4 @@ function App() {
 }
 
 export default App
+// className={css.container}
