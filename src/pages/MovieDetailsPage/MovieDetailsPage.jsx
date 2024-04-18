@@ -6,6 +6,8 @@ import { getMovieDetailsById } from "../../api/apiService";
 import { useEffect, useRef, useState } from "react";
 import css from "./MovieDetailsPage.module.css"
 
+import { FaCircle } from "react-icons/fa6";
+
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -42,17 +44,18 @@ const MovieDetailsPage = () => {
           
           <div className={css.container}>
           {movie.poster_path ? <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="poster" width={250}/> : defaultImg}
-            <div className={css.list}>
+            <div className={css.listText}>
               <h1 className={css.title}>{movie.title}</h1>
+              <ul className={css.genres}>
+                {movie.genres.map((genre, index) => (
+                  <li key={index}><span className={css.span}><FaCircle size="5px" style={{ marginRight: '7px' }}/>{genre.name}</span></li>
+                  ))}
+              </ul>
               <p>User Score: {Math.round(movie.vote_average * 10)}%</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
-              <h4>Genres</h4>
-              <ul>
-                {movie.genres.map((genre, index) => (
-                  <li key={index}>{genre.name}</li>
-                  ))}
-              </ul>
+             
+              
             </div>
             </div>
         </section>
