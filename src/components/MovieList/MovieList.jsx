@@ -17,7 +17,7 @@ console.log( location);
                     <img
                       src={`https://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
                       alt={movie.title}
-                      width={300}
+                      // width={300}
                       // height={120}
                     />
                   </div>
